@@ -1,0 +1,102 @@
+:root {
+  --primary: #4a9f2d;
+  --primary-dark: #3d8a24;
+  --primary-light: #eaf5e4;
+  --bg: #f6f7f5;
+  --surface: #ffffff;
+  --border: #e5e7e3;
+  --text: #1b1b1b;
+  --text-2: #444;
+  --muted: #7a7f78;
+  --danger: #c62828;
+  --danger-bg: #fdecec;
+  --shadow: 0 10px 30px rgb(0 0 0 / 0.06);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary: #6cc04a;
+    --primary-dark: #5aae39;
+    --primary-light: #1f2d19;
+    --bg: #111311;
+    --surface: #1a1d19;
+    --border: #2c302a;
+    --text: #ecefea;
+    --text-2: #c9cdc6;
+    --muted: #9aa096;
+    --danger: #ff8a80;
+    --danger-bg: #3a1c1c;
+    --shadow: none;
+    color-scheme: dark;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Poppins', 'Sarabun', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.btn {
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 9px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.15s, opacity 0.15s;
+}
+.btn:hover:not(:disabled) {
+  background: var(--bg);
+}
+.btn:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.btn:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+.btn-primary {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+.btn-primary:hover:not(:disabled) {
+  background: var(--primary-dark);
+}
+.btn-ghost {
+  background: transparent;
+}
+.btn-danger {
+  background: var(--danger);
+  border-color: var(--danger);
+  color: #fff;
+}
+.btn-danger:hover:not(:disabled) {
+  background: var(--danger);
+  opacity: 0.9;
+}
+.btn-danger-ghost {
+  background: transparent;
+  color: var(--danger);
+  border-color: var(--danger-bg);
+}
+.btn-danger-ghost:hover:not(:disabled) {
+  background: var(--danger-bg);
+}
