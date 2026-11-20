@@ -22,7 +22,6 @@ const tabs: { key: Status; label: string }[] = [
 ]
 
 const api = useApi()
-const { user, logout } = useAuth()
 
 const status = ref<Status>('PENDING')
 const shops = ref<Shop[]>([])
@@ -96,28 +95,13 @@ async function confirmReject() {
   }
 }
 
-function signOut() {
-  logout()
-  navigateTo('/')
-}
-
 const fmt = new Intl.DateTimeFormat('th-TH', { dateStyle: 'medium', timeStyle: 'short' })
 const formatDate = (iso: string | null) => (iso ? fmt.format(new Date(iso)) : '')
 </script>
 
 <template>
   <div class="page">
-    <header class="topbar">
-      <div class="brand">
-        <span class="brand-mark" aria-hidden="true">≈</span>
-        <span>Ocean Admin</span>
-      </div>
-      <div class="me">
-        <img v-if="user?.pictureUrl" :src="user.pictureUrl" alt="" referrerpolicy="no-referrer" />
-        <span class="me-email">{{ user?.email }}</span>
-        <button class="btn btn-ghost" @click="signOut">ออกจากระบบ</button>
-      </div>
-    </header>
+    <AdminHeader />
 
     <main class="content">
       <div class="heading">
@@ -229,53 +213,6 @@ const formatDate = (iso: string | null) => (iso ? fmt.format(new Date(iso)) : ''
 .page {
   min-height: 100vh;
   background: var(--bg);
-}
-.topbar {
-  position: sticky;
-  top: 0;
-  z-index: 5;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 12px 24px;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-}
-.brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 600;
-  color: var(--primary);
-}
-.brand-mark {
-  display: grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 9px;
-  background: var(--primary);
-  color: #fff;
-  font-size: 18px;
-}
-.me {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-width: 0;
-}
-.me img {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-}
-.me-email {
-  font-size: 14px;
-  color: var(--muted);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 .content {
   max-width: 1100px;
@@ -461,13 +398,9 @@ textarea:focus {
   z-index: 30;
 }
 @media (max-width: 600px) {
-  .topbar,
   .content {
     padding-left: 16px;
     padding-right: 16px;
-  }
-  .me-email {
-    display: none;
   }
 }
 </style>
