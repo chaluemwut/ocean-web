@@ -4,6 +4,7 @@ const { user, logout } = useAuth()
 const links = [
   { to: '/shops', label: 'คำขอเปิดร้าน' },
   { to: '/recommended', label: 'อาหารแนะนำ' },
+  { to: '/messages', label: 'ข้อความ' },
 ]
 
 function signOut() {
